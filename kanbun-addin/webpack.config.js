@@ -57,13 +57,13 @@ module.exports = async (env, options) => {
         chunks: ["polyfill", "taskpane"],
         meta: {
           "Content-Security-Policy": {
-              "http-equiv": "Content-Security-Policy",
-              content: `
-                  frame-ancestors 'self' https://github.com;
-                  // 他のCSPディレクティブの設定
-              `
+            "http-equiv": "Content-Security-Policy",
+            content: `
+                frame-ancestors 'self' https://*.github.dev https://*.office.com https://*.office365.com https://*.officeapps.live.com https://*.microsoft.com;
+                // 他のCSPディレクティブの設定
+            `
           }
-      },
+        },
       }),
       new CopyWebpackPlugin({
         patterns: [
@@ -101,6 +101,7 @@ module.exports = async (env, options) => {
         font-src *;
         connect-src *;
         frame-src *;
+        frame-ancestors 'self' https://*.github.dev https://*.office.com https://*.office365.com https://*.officeapps.live.com;
         object-src *;
     `,
       },

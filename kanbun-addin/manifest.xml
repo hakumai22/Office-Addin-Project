@@ -10,7 +10,12 @@
   <HighResolutionIconUrl DefaultValue="https://studious-waddle-x5vrv4j6674f997g-3000.app.github.dev/assets/icon-64.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
-    <AppDomain>https://*</AppDomain>
+    <AppDomain>https://*.github.dev</AppDomain>
+    <AppDomain>https://*.app.github.dev</AppDomain>
+    <AppDomain>https://*.github.io</AppDomain>
+    <AppDomain>https://github.com</AppDomain>
+    <AppDomain>https://localhost:3000</AppDomain>
+    <AppDomain>https://www.contoso.com</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>

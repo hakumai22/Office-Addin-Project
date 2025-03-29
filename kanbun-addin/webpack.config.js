@@ -84,7 +84,16 @@ module.exports = async (env, options) => {
     devServer: {
       headers: {
         "Access-Control-Allow-Origin": "*",
-        "Content-Security-Policy": "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;",
+        "Content-Security-Policy": `
+        default-src * 'unsafe-inline' 'unsafe-eval' blob: data:;
+        script-src * 'unsafe-inline' 'unsafe-eval';
+        style-src * 'unsafe-inline';
+        img-src * data:;
+        font-src *;
+        connect-src *;
+        frame-src *;
+        object-src *;
+    `,
       },
       server: {
         type: "https",

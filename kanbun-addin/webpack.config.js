@@ -55,6 +55,15 @@ module.exports = async (env, options) => {
         filename: "taskpane.html",
         template: "./src/taskpane/taskpane.html",
         chunks: ["polyfill", "taskpane"],
+        meta: {
+          "Content-Security-Policy": {
+              "http-equiv": "Content-Security-Policy",
+              content: `
+                  frame-ancestors 'self' https://github.com;
+                  // 他のCSPディレクティブの設定
+              `
+          }
+      },
       }),
       new CopyWebpackPlugin({
         patterns: [

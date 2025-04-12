@@ -8,3 +8,4 @@ main
 └── develop
     └── some branches
 </pre>
+という感じです。

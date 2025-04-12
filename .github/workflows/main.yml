@@ -1,0 +1,25 @@
+name: FTP Deploy to hakumai22.shop
+
+on:
+  workflow_dispatch:  # 手動実行可能
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install lftp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Upload kanbun-addin/dist to hakumai22.shop via FTP
+        run: |
+          lftp -c "
+            set ftp:list-options -a;
+            open -u ${{ secrets.FTP_USER }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }};
+            mirror -R kanbun-addin/dist public_html/www.hakumai22.shop;
+          "

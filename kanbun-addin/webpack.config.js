@@ -3,9 +3,10 @@
 const devCerts = require("office-addin-dev-certs");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
 
 const urlDev = "https://localhost:3000/";
-const urlProd = "https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const urlProd = "https://www.hakumai22.shop/dist/"; // distディレクトリを追加
 
 async function getHttpsOptions() {
   const httpsOptions = await devCerts.getHttpsServerOptions();
@@ -22,6 +23,8 @@ module.exports = async (env, options) => {
       commands: "./src/commands/commands.js",
     },
     output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
       clean: true,
     },
     resolve: {
@@ -55,6 +58,15 @@ module.exports = async (env, options) => {
         filename: "taskpane.html",
         template: "./src/taskpane/taskpane.html",
         chunks: ["polyfill", "taskpane"],
+        meta: {
+          "Content-Security-Policy": {
+            "http-equiv": "Content-Security-Policy",
+            content: `
+                frame-ancestors 'self' https://*.github.dev https://*.office.com https://*.office365.com https://*.officeapps.live.com https://*.microsoft.com;
+                // 他のCSPディレクティブの設定
+            `
+          }
+        },
       }),
       new CopyWebpackPlugin({
         patterns: [
@@ -84,6 +96,17 @@ module.exports = async (env, options) => {
     devServer: {
       headers: {
         "Access-Control-Allow-Origin": "*",
+        "Content-Security-Policy": `
+        default-src * 'unsafe-inline' 'unsafe-eval' blob: data:;
+        script-src * 'unsafe-inline' 'unsafe-eval';
+        style-src * 'unsafe-inline';
+        img-src * data:;
+        font-src *;
+        connect-src *;
+        frame-src *;
+        frame-ancestors 'self' https://*.github.dev https://*.office.com https://*.office365.com https://*.officeapps.live.com;
+        object-src *;
+    `,
       },
       server: {
         type: "https",

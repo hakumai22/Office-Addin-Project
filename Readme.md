@@ -3,8 +3,8 @@
 ## ブランチについて
 主な開発ブランチはdevelopにする予定です。  
 図に示すと、
-main  
-↓
-develop  
-↓    ↓   ↓
-何か　何か　何か
+<pre>
+main
+└── develop
+    └── some branches
+</pre>

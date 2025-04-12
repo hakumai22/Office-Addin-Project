@@ -1,5 +1,6 @@
 # Office-Addin-Projectへようこそ！
 詳細な情報は[Github wiki](https://github.com/hakumai22/Office-Addin-Project/wiki)に書かれています。
+デプロイ方法、
 ## ブランチについて
 主な開発ブランチはdevelopにする予定です。 
 コンフリクトを防ぐためにdevelopブランチには直接コミットしないことを推奨します。
@@ -19,3 +20,4 @@ main
     └── some branches(bug_fix,ui_design,code_prepare,update_futureなど)
 </pre>
 という感じです。
+

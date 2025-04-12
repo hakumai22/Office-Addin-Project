@@ -20,3 +20,12 @@ main
     └── some branches(bug_fix,ui_design,code_prepare,update_futureなど)
 </pre>
 という感じです。
+
+
+### コンフリクト対策について
+まだ詳細には決まっていませんが、
+* mainで変更するもの
+* developで変更するもの
+* developでのプルリクで変更するもの
+
+の三つに分ける予定です。
